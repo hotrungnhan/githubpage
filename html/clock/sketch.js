@@ -6,7 +6,7 @@ function setup() {
 
     (width > height) ? r = height / 4 : r = width / 4;
     createCanvas(width, height)
-    frameRate(1);
+    // frameRate(1);
 }
 
 function draw() {

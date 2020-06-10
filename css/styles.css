@@ -1,0 +1,9 @@
+body ul li {
+    list-style: none;
+}
+
+body a {
+    color: currentColor;
+    opacity: 1;
+    text-decoration: none;
+}
