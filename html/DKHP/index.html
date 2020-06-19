@@ -1,25 +1,68 @@
 <!DOCTYPE html>
-<style>
-    html body {
-        overflow: hidden;
-        height: auto;
-        margin: 0;
-    }
-</style>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
-    <title>Clock</title>
-    <script src="sketch.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Đoé có gì</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./css/lib/bootstrap.min.css">
 </head>
 
-<body>
+<body class="bg-secondary">
+    <section class="container ">
+        <h1 class="text-center text-white pt-5">TOOL ĐĂNG KÍ HỌC PHẦN</h1>
+        <div id="login-row" class="row justify-content-center align-items-center ">
+            <div id="login-column" class=" col-md-6 ">
+                <div id="login-box" class="col-md-12 shadow-lg  rounded">
+                    <div id="login-form">
+                        <div class="form-group" id="notify">
+                            <!-- thong bao  -->
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="text-info">MSSV:</label>
+                            <input type="text" id="name" class="form-control ">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass" class="text-info">Password:</label>
+                            <input type="password" id="pass" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-info">Hiện mật khẩu:</label>
+                            <input type="checkbox" onclick=showpassword()>
+                        </div>
+                        <div class="form-group submit">
+                            <input type="submit" class="btn btn-info btn-md" value="Submit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="text-info">Học phần bỏ đây:</label>
+            <textarea type="text" id="course" class="form-control shadow-lg" placeholder="Mỗi môn 1 dòng:
+IT002.K23.CNCL
+IT002.K23.CNCL.2
+IT002.K23.CNCL.2
+MA005.K21.ATCL
+"></textarea>
+            <p class="text-center text-white"> &#x263A;Lưu ý app không có chức năng kiểm tra môn trùng và này nọ. hãy tự
+                giải quyết trước :v có vấn đề gì mình k chịu trách nhiệm đâu&#x263A;</p>
+        </div>
+    </section>
+    <footer class="page-footer font-small blue pt-4">
+        <p class="text-center text-white">Make by hotrungnhan K14 UIT &#x263A;</p>
+    </footer>
+
+    <!-- script -->
+    <script type="text/javascript" src="./js/lib/jquery.3.5.1-min.js"></script>
+    <script type="text/javascript" src="./js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/lib/axios.min.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
 </body>
+<script>
+
+</script>
 
 </html>
