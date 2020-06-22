@@ -1,4 +1,5 @@
 count = 0
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 function makeCourseParram(coursearr, token, mssv) {
     let ob = {};
     ob["op"] = "Đăng ký";
@@ -20,7 +21,7 @@ function showpassword() {
 }
 function appendnof(str) {
     $('#notify').empty();
-    $('#notify').append(str);
+    $('#notify').append(`<a class="text-danger"><strong>${str}</strong><a>`);
 }
 $(document).ready(function () {
     if (localStorage.getItem("pass") && localStorage.getItem("id")) {
@@ -33,6 +34,7 @@ $(document).ready(function () {
     }
 })
 $(document).ready(function () {
+    let check = false;
 
     $("#login-form .submit").on('click', e => {
         if ($("#name").val() != "" && $("#pass").val() != "") {
@@ -46,16 +48,17 @@ $(document).ready(function () {
                 op: "Log in"
             }
             console.log(data);
+            appendnof("Đang chạy")
 
             axios({
-                method: 'get',
+                method: 'post',
                 url: 'https://dkhp.uit.edu.vn/sinhvien/hocphan/dangky',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 data: data
             }).then(res => {
-                appendnof("đăng nhập thành công ")
+                appendnof("Đăng nhập thành công ")
                 let formtoken = $(res.data).find("input[name='form_token']").val()
                 if ($("#course").val() != "" && formtoken != "") {
                     let coursearr = $("#course").val().split("\n");
@@ -65,36 +68,34 @@ $(document).ready(function () {
                         method: 'get',
                         url: 'https://dkhp.uit.edu.vn/sinhvien/hocphan/dangky',
                         headers: {
-                            'Content-Type': 'multipart/form-data',
+                            'Content-Type': 'application/x-www-form-urlencoded',
+
                         },
                         data: data
                     }
                     ).then(res => {
                         if (res.status == 302) {
-                            appendnof("thành công sau " + count + "lần");
+                            appendnof("Thành công sau " + count + "lần");
                             count = 0;
+                            check = true;
                         }
                     }).catch(err => {
                         if (err.response.status == 503)
-                            appendnof("thất bại " + ++count + "lần");
+                            appendnof("Thất bại " + ++count + "lần");
                         else {
-                            appendnof(" trang đăng kí chưa mở")
+                            appendnof("Trang đăng kí chưa mở")
                             console.log(err);
                         }
                     });
+                } else {
+                    appendnof("Học phần bị trống")
                 }
             }).catch(err => {
-                appendnof("đăng nhập thất bại hoặc trang đăng kí chưa mở")
+                appendnof("Đăng nhập thất bại hoặc trang đăng kí chưa mở")
                 console.log(err);
-            });
+            })
+        } else {
+            appendnof("chưa nhập mssv or password");
         }
     });
 });
-// $("#course").keyup(function () {
-//     $('#notify').empty();
-//     $('#notify').append($(this).val());
-//     console.log($(this).val());
-//     let res = $(this).val().trim().split("\n");
-//     let data = makeCourseParram(res, "yk62MkdN_pCwhLz3ounxzu1zuNjieKe7I4sc", 19520797);
-//     console.log(data);
-// })
